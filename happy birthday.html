@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Animated Birthday Card - Shraddha</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;700&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0; padding:0;
+  font-family:'Poppins', sans-serif;
+  background:#ffd1ea;
+  overflow:hidden;
+}
+.slide{
+  width:100vw; height:100vh;
+  position:absolute; top:0; left:0;
+  display:flex; flex-direction:column;
+  justify-content:center; align-items:center;
+  text-align:center;
+  padding:20px;
+  transition:opacity 0.8s ease;
+  opacity:0; pointer-events:none;
+}
+.active{ opacity:1; pointer-events:auto; }
+
+h1{
+  font-family:'Great Vibes',cursive;
+  font-size:70px; color:#ff2f8c;
+  text-shadow:0 4px 9px rgba(0,0,0,0.15);
+}
+p{
+  font-size:22px; color:#7a0e3d;
+}
+
+/* Navigation Buttons */
+.btn{
+  margin-top:20px;
+  padding:12px 28px;
+  background:#ff2f8c;
+  color:white;
+  border:none; border-radius:12px;
+  font-size:18px; cursor:pointer;
+  box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+/* Animated Confetti */
+.confetti{
+  position:absolute; inset:0; pointer-events:none;
+}
+.dot{
+  position:absolute;
+  width:12px; height:12px;
+  background:#ff9bc8;
+  border-radius:50%;
+  animation:fall linear infinite;
+}
+@keyframes fall{
+  0%{transform:translateY(-10vh) rotate(0);}
+  100%{transform:translateY(110vh) rotate(720deg);}
+}
+
+/* Cake Drawing */
+.cake{
+  width:260px; height:200px;
+  position:relative; margin:10px;
+}
+.layer{
+  position:absolute; left:50%;
+  transform:translateX(-50%);
+  border-radius:20px;
+}
+.l1{
+  bottom:0; width:260px; height:110px;
+  background:#ff6fa0;
+}
+.l2{
+  bottom:75px; width:200px; height:80px;
+  background:#ff9ac2;
+}
+.candle{
+  position:absolute; left:50%; top:10px;
+  width:12px; height:60px;
+  background:#fff; transform:translateX(-50%);
+  border-radius:5px;
+}
+.flame{
+  position:absolute; left:50%; top:-15px;
+  width:20px; height:30px;
+  transform:translateX(-50%);
+  border-radius:50%;
+  background:radial-gradient(circle,#fff 0%,#ffdf73 40%, #ff6b6b 70%);
+  animation:flicker .6s infinite alternate;
+}
+@keyframes flicker{
+  0%{transform:translateX(-50%) scale(1);}
+  100%{transform:translateX(-50%) scale(1.15);}
+}
+</style>
+</head>
+
+<body>
+
+<div class="confetti">
+<div class="dot" style="left:0%; animation-duration:2.0s;"></div>
+<div class="dot" style="left:5%; animation-duration:2.2s;"></div>
+<div class="dot" style="left:10%; animation-duration:2.4s;"></div>
+<div class="dot" style="left:15%; animation-duration:2.6s;"></div>
+<div class="dot" style="left:20%; animation-duration:2.8s;"></div>
+<div class="dot" style="left:25%; animation-duration:3.0s;"></div>
+<div class="dot" style="left:30%; animation-duration:3.2s;"></div>
+<div class="dot" style="left:35%; animation-duration:3.4000000000000004s;"></div>
+<div class="dot" style="left:40%; animation-duration:3.6s;"></div>
+<div class="dot" style="left:45%; animation-duration:3.8s;"></div>
+<div class="dot" style="left:50%; animation-duration:4.0s;"></div>
+<div class="dot" style="left:55%; animation-duration:4.2s;"></div>
+<div class="dot" style="left:60%; animation-duration:4.4s;"></div>
+<div class="dot" style="left:65%; animation-duration:4.6s;"></div>
+<div class="dot" style="left:70%; animation-duration:4.800000000000001s;"></div>
+<div class="dot" style="left:75%; animation-duration:5.0s;"></div>
+<div class="dot" style="left:80%; animation-duration:5.2s;"></div>
+<div class="dot" style="left:85%; animation-duration:5.4s;"></div>
+<div class="dot" style="left:90%; animation-duration:5.6s;"></div>
+<div class="dot" style="left:95%; animation-duration:5.800000000000001s;"></div>
+</div>
+
+<!-- Slide 1 -->
+<div class="slide active" id="s1">
+  <h1>Happy Birthday Shraddha 🎀</h1>
+  <div class="cake">
+    <div class="l1 layer"></div>
+    <div class="l2 layer"></div>
+    <div class="candle"></div>
+    <div class="flame"></div>
+  </div>
+  <button class="btn" onclick="next(1)">Next ➜</button>
+</div>
+
+<!-- Slide 2 -->
+<div class="slide" id="s2">
+  <h1>Wishing You Joy ✨</h1>
+  <p>“Hope today treats you really well… just like you deserve.”</p>
+  <button class="btn" onclick="next(2)">Next ➜</button>
+</div>
+
+<!-- Slide 3 -->
+<div class="slide" id="s3">
+  <h1>Lots of Love 💗</h1>
+  <p>May your day be filled with smiles, surprises, and pink sparkles.</p>
+  <button class="btn" onclick="next(3)">Next ➜</button>
+</div>
+
+<!-- Slide 4 -->
+<div class="slide" id="s4">
+  <h1>Enjoy Your Special Day 🎉</h1>
+  <p>You are cherished, celebrated, and adored. Happy Birthday, Shraddha!</p>
+</div>
+
+<script>
+function next(n){
+  document.getElementById("s"+n).classList.remove("active");
+  document.getElementById("s"+(n+1)).classList.add("active");
+}
+</script>
+
+</body>
+</html>
